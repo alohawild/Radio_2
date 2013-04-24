@@ -143,7 +143,7 @@ const int LCDdelay=10;
 //************************************************************************
 // House keeping 
 
-char  version_code[ ]   = "1.4";
+char  version_code[ ]   = "1.5";
 char  project_name[ ]   = "Wild's Radio";
 
 //********************************
@@ -194,6 +194,7 @@ void setup() {
     pinMode(txPin, OUTPUT);
   LCD.begin(9600);
   clearLCD();
+  backlightOn();
   lcdPosition(0,0);  
 
   // Print a message to the LCD. This lets us know about a reset
@@ -203,7 +204,7 @@ void setup() {
   lcdPosition(0,1);
   LCD.print("Version ");
   LCD.print(version_code);
-  delay(5000);  
+  delay(500);  
   
   lcdPosition(0,0);
   LCD.print("                   ");
@@ -285,6 +286,7 @@ void loop() {
       if (currentChannel != previousChannel) {//print channel
         previousChannel = currentChannel;
         clearLCD();
+        backlightOn();
         sprintf(printBuffer, "FM %02d.%01dMHz", currentChannel / 10, currentChannel % 10);
         lcdPosition(0,0);
         LCD.print(printBuffer);
